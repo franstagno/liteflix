@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+	display: flex;
+`;
 const Logo = styled.img``;
-export { Wrapper, Logo };
+const AddMovie = styled.div``;
+export { Wrapper, Logo, AddMovie };
