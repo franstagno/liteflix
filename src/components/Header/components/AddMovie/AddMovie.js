@@ -6,7 +6,7 @@ const AddMovie = () => {
 		<Wrapper>
 			<img src="/plus.png" />
 			<img src="/plus.png" />
-			<p>agregar película</p>
+			<h3>agregar película</h3>
 		</Wrapper>
 	);
 };
