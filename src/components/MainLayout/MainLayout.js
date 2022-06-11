@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Header from "../Header";
 import Spinner from "../Spinner";
+import PopularMovie from "./components/PopularMovie";
 import { Wrapper, Background, WrapperSpinner } from "./styles";
 import { getPopularMovie } from "./utils";
 
 const MainLayout = () => {
-	const [popularMovies, setPopularMovies] = useState({});
+	const [popularMovie, setPopularMovie] = useState({});
 	const [loader, setLoader] = useState(true);
 	useEffect(() => {
 		(async () => {
 			const res = await getPopularMovie();
-			setPopularMovies(res);
+			setPopularMovie(res);
 			setLoader(false);
 		})();
 	}, []);
@@ -20,10 +21,11 @@ const MainLayout = () => {
 		</WrapperSpinner>
 	) : (
 		<Background
-			src={`https://image.tmdb.org/t/p/original/${popularMovies.backdrop_path}`}
+			src={`https://image.tmdb.org/t/p/original/${popularMovie.backdrop_path}`}
 		>
 			<Wrapper>
 				<Header></Header>
+				<PopularMovie title={popularMovie.title}></PopularMovie>
 			</Wrapper>
 		</Background>
 	);

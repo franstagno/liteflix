@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
 	width: 90%;
-	padding-top: 35px;
+	height: 100%;
 	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 `;
 const Background = styled.div`
 	width: 100%;

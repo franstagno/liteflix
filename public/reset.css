@@ -1,3 +1,16 @@
+@font-face {
+	font-family: Bebas Neue Bold;
+	src: url(/BebasNeue-Bold.otf);
+}
+@font-face {
+	font-family: Bebas Neue Regular;
+	src: url(/BebasNeue-Regular.otf);
+}
+@font-face {
+	font-family: Bebas Neue Light;
+	src: url(/BebasNeue-Light.otf);
+}
+
 html,
 body,
 div,
@@ -102,7 +115,7 @@ section {
 }
 body {
 	line-height: 1;
-	font-family: 'Bebas Neue', cursive;
+	font-family: "Bebas Neue Regular";
 }
 ol,
 ul {
