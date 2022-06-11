@@ -25,4 +25,9 @@ const WrapperSpinner = styled.div`
 	background: #242424;
 `;
 
-export { Wrapper, Background, WrapperSpinner };
+const Movies = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+`;
+
+export { Wrapper, Background, WrapperSpinner, Movies };

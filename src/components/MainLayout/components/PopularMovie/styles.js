@@ -2,6 +2,10 @@ import styled from "styled-components";
 import Button from "../../../Button";
 
 const Wrapper = styled.div`
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
 	h2 {
 		font-size: 20px;
 		line-height: 20px;
