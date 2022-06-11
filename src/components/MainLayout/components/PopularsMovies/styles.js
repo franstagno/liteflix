@@ -12,23 +12,6 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	p {
-		margin-bottom: 20px;
-		font-family: Bebas Neue Light;
-		span {
-			font-family: "Bebas Neue Bold";
-			padding-left: 5px;
-		}
-	}
 `;
-const Movie = styled.div`
-	background-image: url(${(props) => props.src});
-	width: 220px;
-	height: 145px;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 100% 100%;
-	border-radius: 4px;
-	margin-bottom: 20px;
-`;
-export { Wrapper, Movie };
+
+export { Wrapper };

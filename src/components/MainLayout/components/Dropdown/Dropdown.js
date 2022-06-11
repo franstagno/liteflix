@@ -22,7 +22,10 @@ const Dropdown = () => {
 		<Wrapper isOpen={open}>
 			<Text onClick={() => setOpen(!open)}>
 				ver:
-				<span>populares</span>
+				{categories.map(
+					(category) =>
+						category.selected && <span>{category.option}</span>
+				)}
 				<img src="/arrow.png"></img>
 			</Text>
 			<Triangle isOpen={open}></Triangle>

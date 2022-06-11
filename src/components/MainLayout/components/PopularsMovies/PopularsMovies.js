@@ -1,6 +1,7 @@
 import React from "react";
 import Dropdown from "../Dropdown";
-import { Wrapper, Movie } from "./styles";
+import Movie from "../Movie";
+import { Wrapper } from "./styles";
 
 const PopularsMovies = ({ movies }) => {
 	return (
@@ -9,6 +10,7 @@ const PopularsMovies = ({ movies }) => {
 			{movies.map((movie) => (
 				<Movie
 					src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+					movie={movie}
 				></Movie>
 			))}
 		</Wrapper>
