@@ -49,6 +49,7 @@ const Hover = styled.div`
 	display: ${(props) => (!props.isOver ? "none" : "flex")};
 	flex-direction: column;
 	justify-content: end;
+	cursor: pointer;
 `;
 
 const Play = styled.div`
@@ -79,6 +80,10 @@ const Play = styled.div`
 		height: 20px;
 		background: rgba(36, 36, 36, 0.5);
 		border-radius: 20px;
+		background: #64eebc;
+		path {
+			fill: #242424;
+		}
 	}
 `;
 const Info = styled.div`
@@ -90,6 +95,7 @@ const Score = styled.div`
 	font-size: 14px;
 	line-height: 12px;
 	letter-spacing: 2px;
+	margin-left: 5px;
 `;
 const Year = styled.div`
 	font-size: 14px;
@@ -97,4 +103,18 @@ const Year = styled.div`
 	letter-spacing: 2px;
 `;
 
-export { Wrapper, Title, Hover, NotHover, Play, Info, Score, Year };
+const ScoreWrapper = styled.div`
+	display: flex;
+`;
+
+export {
+	Wrapper,
+	Title,
+	Hover,
+	NotHover,
+	Play,
+	Info,
+	Score,
+	Year,
+	ScoreWrapper,
+};

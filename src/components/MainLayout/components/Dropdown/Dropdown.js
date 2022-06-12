@@ -23,8 +23,10 @@ const Dropdown = () => {
 			<Text onClick={() => setOpen(!open)}>
 				ver:
 				{categories.map(
-					(category) =>
-						category.selected && <span>{category.option}</span>
+					(category, index) =>
+						category.selected && (
+							<span key={index}>{category.option}</span>
+						)
 				)}
 				<img src="/arrow.png"></img>
 			</Text>
@@ -32,12 +34,13 @@ const Dropdown = () => {
 			<BoxDown isOpen={open}>
 				{categories.map((category, index) =>
 					category.selected ? (
-						<Option selected={category.selected}>
+						<Option selected={category.selected} key={index}>
 							{category.option}
 							<img src="/correct.png"></img>
 						</Option>
 					) : (
 						<Option
+							key={index}
 							selected={category.selected}
 							onClick={() => handleChange(index)}
 						>

@@ -25,7 +25,7 @@ const BoxDown = styled.div`
 	width: 220px;
 	top: 25px;
 	background: #242424;
-	left: 14px;
+	left: 0;
 	z-index: 10;
 `;
 

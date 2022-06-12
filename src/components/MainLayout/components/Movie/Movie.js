@@ -10,6 +10,7 @@ import {
 	Info,
 	Score,
 	Year,
+	ScoreWrapper,
 } from "./styles";
 
 const Movie = ({ src, movie }) => {
@@ -35,7 +36,10 @@ const Movie = ({ src, movie }) => {
 					</Title>
 				</Play>
 				<Info>
-					<Score>{score}</Score>
+					<ScoreWrapper>
+						<img src="/star.png"></img>
+						<Score>{score}</Score>
+					</ScoreWrapper>
 					<Year>{year}</Year>
 				</Info>
 			</Hover>

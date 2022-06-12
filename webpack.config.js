@@ -2,8 +2,11 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-	entry: path.join(__dirname, "src/views", "Home.js"),
+	entry: {
+		home: path.join(__dirname, "src/views/Home.js"),
+	},
 	output: {
+		filename: "[name].bundle.js",
 		path: path.resolve(__dirname, "dist"),
 	},
 	mode: "development",
@@ -25,13 +28,15 @@ module.exports = {
 			},
 			{
 				test: /\.svg$/,
-				loader: 'svg-inline-loader'
-			}
+				loader: "svg-inline-loader",
+			},
 		],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, "src/html", "index.html"),
+			chunks: ["home"],
+			template: path.join(__dirname, "src/html/index.html"),
+			filename: "index.html",
 		}),
 	],
 };

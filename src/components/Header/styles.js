@@ -9,9 +9,9 @@ const Logo = styled.img`
 	height: 23px;
 `;
 const AddMovie = styled.div``;
-const Menu = styled.div`
+const Brand = styled.div`
 	display: flex;
 	align-items: center;
 `;
 
-export { Wrapper, Logo, AddMovie, Menu };
+export { Wrapper, Logo, AddMovie, Brand };
