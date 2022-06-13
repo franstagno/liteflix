@@ -3,9 +3,9 @@ import InlineSVG from "svg-inline-react";
 import Plus from "../../../../svg/plus.svg";
 import { Wrapper } from "./styles";
 
-const AddMovie = () => {
+const AddMovie = ({ isAddMovie, setIsAddMovie }) => {
 	return (
-		<Wrapper>
+		<Wrapper onClick={() => setIsAddMovie(!isAddMovie)}>
 			<InlineSVG src={Plus}></InlineSVG>
 			<h3>agregar película</h3>
 		</Wrapper>

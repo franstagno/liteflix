@@ -36,7 +36,6 @@ const Title = styled.p`
 	line-height: 16px;
 	text-align: center;
 	letter-spacing: 4px;
-	color: #ffffff;
 	margin-bottom: 10px;
 	font-family: Bebas Neue Light;
 	display: ${(props) => (!props.isOver ? "block" : "none")};

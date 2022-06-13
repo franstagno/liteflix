@@ -10,7 +10,6 @@ const Wrapper = styled.div`
 		font-size: 20px;
 		line-height: 20px;
 		letter-spacing: 4px;
-		color: #ffffff;
 		font-family: "Bebas Neue Light";
 		span {
 			font-family: "Bebas Neue Bold";
@@ -38,7 +37,6 @@ const PlayButton = styled(Button)`
 	justify-content: center;
 	align-items: center;
 	background: #242424;
-	color: #ffffff;
 	font-size: 18px;
 	line-height: 22px;
 	letter-spacing: 4px;
@@ -59,7 +57,6 @@ const PlusButton = styled(Button)`
 	align-items: center;
 	background: rgba(36, 36, 36, 0.5);
 	border: 1px solid rgba(255, 255, 255, 0.5);
-	color: #ffffff;
 	font-size: 18px;
 	line-height: 22px;
 	letter-spacing: 4px;

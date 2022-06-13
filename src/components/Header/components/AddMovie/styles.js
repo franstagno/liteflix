@@ -18,7 +18,6 @@ const Wrapper = styled.div`
 		line-height: 18px;
 		letter-spacing: 4px;
 		padding-left: 5px;
-		color: #ffffff;
 		padding-top: 4px;
 		width: 168px;
 	}

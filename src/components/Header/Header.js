@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { Wrapper, Logo, Brand } from "./styles";
-import AddMovie from "./components/AddMovie";
+import LinkAddMovie from "./components/AddMovie";
 import Options from "./components/Options";
 import Menu from "./components/Menu";
+import AddMovie from "../AddMovie";
 
 const Header = () => {
 	const [isOpenMenu, setIsOpenMenu] = useState(false);
-	return (
+	const [isAddMovie, setIsAddMovie] = useState(false);
+	return !isAddMovie ? (
 		<Wrapper>
 			<Brand>
 				<Logo src="/liteflix.png"></Logo>
-				<AddMovie></AddMovie>
+				<LinkAddMovie
+					isAddMovie={isAddMovie}
+					setIsAddMovie={setIsAddMovie}
+				></LinkAddMovie>
 			</Brand>
 			<Options
 				isOpenMenu={isOpenMenu}
@@ -23,6 +28,11 @@ const Header = () => {
 				></Menu>
 			)}
 		</Wrapper>
+	) : (
+		<AddMovie
+			isAddMovie={isAddMovie}
+			setIsAddMovie={setIsAddMovie}
+		></AddMovie>
 	);
 };
 
