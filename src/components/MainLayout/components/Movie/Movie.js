@@ -14,10 +14,11 @@ import {
 } from "./styles";
 
 const Movie = ({ src, movie }) => {
+	if (Object.keys(movie).length === 0) return;
 	const [isOver, setIsOver] = useState(false);
-	const year = movie.release_date.split("-")[0];
-	const score = movie.vote_average;
-	const title = movie.title;
+	const year = movie.release_date && movie.release_date.split("-")[0];
+	const score = movie.vote_average && movie.vote_average;
+	const title = movie.title && movie.title;
 	return (
 		<Wrapper
 			src={src}
@@ -35,13 +36,15 @@ const Movie = ({ src, movie }) => {
 						<span>{title}</span>
 					</Title>
 				</Play>
-				<Info>
-					<ScoreWrapper>
-						<img src="/star.png"></img>
-						<Score>{score}</Score>
-					</ScoreWrapper>
-					<Year>{year}</Year>
-				</Info>
+				{score && year && (
+					<Info>
+						<ScoreWrapper>
+							<img src="/star.png"></img>
+							<Score>{score}</Score>
+						</ScoreWrapper>
+						<Year>{year}</Year>
+					</Info>
+				)}
 			</Hover>
 		</Wrapper>
 	);

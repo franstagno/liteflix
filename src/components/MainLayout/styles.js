@@ -16,7 +16,7 @@ const Background = styled.div`
 	background-position: center;
 	background-size: 100% 100%;
 `;
-const WrapperSpinner = styled.div`
+const Loading = styled.div`
 	width: 100%;
 	height: 100vh;
 	display: flex;
@@ -30,4 +30,4 @@ const Movies = styled.div`
 	flex-wrap: wrap;
 `;
 
-export { Wrapper, Background, WrapperSpinner, Movies };
+export { Wrapper, Background, Loading, Movies };

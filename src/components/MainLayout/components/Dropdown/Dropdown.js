@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { Wrapper, BoxDown, Triangle, Option, Text } from "./styles";
 
-const Dropdown = () => {
+const Dropdown = ({ categories, setCategory }) => {
+	if (!categories.length) return;
 	const [open, setOpen] = useState(false);
-	const [categories, setCategory] = useState([
-		{ option: "populares", selected: true },
-		{ option: "mis peliculas", selected: false },
-	]);
 	const handleChange = (index) => {
 		const newCategories = categories.map((category, idx) => {
 			if (index === idx) {
@@ -25,7 +22,7 @@ const Dropdown = () => {
 				{categories.map(
 					(category, index) =>
 						category.selected && (
-							<span key={index}>{category.option}</span>
+							<span key={index}>{category.displayName}</span>
 						)
 				)}
 				<img src="/arrow.png"></img>
@@ -35,7 +32,7 @@ const Dropdown = () => {
 				{categories.map((category, index) =>
 					category.selected ? (
 						<Option selected={category.selected} key={index}>
-							{category.option}
+							{category.displayName}
 							<img src="/correct.png"></img>
 						</Option>
 					) : (
@@ -44,7 +41,7 @@ const Dropdown = () => {
 							selected={category.selected}
 							onClick={() => handleChange(index)}
 						>
-							{category.option}
+							{category.displayName}
 						</Option>
 					)
 				)}

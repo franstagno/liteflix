@@ -1,37 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import StoreContext from "../../context/StateContext";
 import Header from "../Header";
 import Spinner from "../Spinner";
 import PopularMovie from "./components/PopularMovie";
 import PopularsMovies from "./components/PopularsMovies";
-import { Wrapper, Background, WrapperSpinner, Movies } from "./styles";
-import { getPopularMovie, getPopularsMovies } from "./utils";
+import { Wrapper, Background, Loading, Movies } from "./styles";
+import { getPopularMovie, getPopularsMovies, getMyMovies } from "./utils";
 
 const MainLayout = () => {
-	const [popularMovie, setPopularMovie] = useState({});
-	const [popularsMovies, setPopularsMovies] = useState([]);
-	const [loader, setLoader] = useState(true);
+	const { movies, setMovies } = useContext(StoreContext);
+	const [loading, setLoading] = useState(true);
+	const url = `https://image.tmdb.org/t/p/original/${movies.featuredMovie.backdrop_path}`;
+
 	useEffect(() => {
 		(async () => {
-			const movie = await getPopularMovie();
-			setPopularMovie(movie);
-			setLoader(false);
-			const movies = await getPopularsMovies();
-			setPopularsMovies(movies);
+			const featuredMovie = await getPopularMovie();
+			const popularMovies = await getPopularsMovies();
+			const myMovies = await getMyMovies();
+			setMovies({ ...movies, featuredMovie, popularMovies, myMovies });
+			setLoading(false);
 		})();
 	}, []);
-	return loader ? (
-		<WrapperSpinner>
+
+	return loading ? (
+		<Loading>
 			<Spinner></Spinner>
-		</WrapperSpinner>
+		</Loading>
 	) : (
-		<Background
-			src={`https://image.tmdb.org/t/p/original/${popularMovie.backdrop_path}`}
-		>
+		<Background src={url}>
 			<Wrapper>
 				<Header></Header>
 				<Movies>
-					<PopularMovie title={popularMovie.title}></PopularMovie>
-					<PopularsMovies movies={popularsMovies}></PopularsMovies>
+					<PopularMovie></PopularMovie>
+					<PopularsMovies></PopularsMovies>
 				</Movies>
 			</Wrapper>
 		</Background>

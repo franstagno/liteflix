@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import InlineSVG from "svg-inline-react";
 import CloseSvg from "../../../svg/close.svg";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { firebaseConfig } from "../../../components/MainLayout/utils";
 import { getFirestore, collection, addDoc } from "firebase/firestore/lite";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
@@ -30,20 +31,13 @@ const Add = ({
 	const [movie, setMovie] = useState({});
 	const [cancelUpload, setCancelUpload] = useState({});
 	const [progress, setProgress] = useState(false);
-	const firebaseConfig = {
-		apiKey: process.env.FIREBASE_API_KEY,
-		authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-		projectId: process.env.FIREBASE_PROJECT_ID,
-		storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-		messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-		appId: process.env.FIREBASE_APP_ID,
-	};
+
 	const firebaseApp = initializeApp(firebaseConfig);
 	const db = getFirestore(firebaseApp);
 
 	const uploadFile = (e) => {
 		setFile([...e.target.files]);
-		setMovie({ ...movie, image: e.target.files[0].name });
+		setMovie({ ...movie, backdrop_path: e.target.files[0].name });
 	};
 
 	const handleCancel = () => {
