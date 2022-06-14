@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { getFirestore, collection, addDoc } from "firebase/firestore/lite";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import InlineSVG from "svg-inline-react";
@@ -21,21 +22,9 @@ import {
 const AddMovie = ({ isAddMovie, setIsAddMovie }) => {
 	const hiddenFileInput = useRef(null);
 	const [file, setFile] = useState([]);
+	const [movie, setMovie] = useState({});
 	const [cancelUpload, setCancelUpload] = useState({});
 	const [progress, setProgress] = useState(false);
-	const uploadFile = (e) => {
-		setFile([...e.target.files]);
-	};
-	const handleClick = () => {
-		hiddenFileInput.current.click();
-	};
-	const handleCancel = () => {
-		hiddenFileInput.current.value = "";
-		cancelUpload.cancel();
-		setProgress(false);
-		setFile([]);
-	};
-	const handleSubmit = () => {};
 	const firebaseConfig = {
 		apiKey: process.env.FIREBASE_API_KEY,
 		authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -45,6 +34,26 @@ const AddMovie = ({ isAddMovie, setIsAddMovie }) => {
 		appId: process.env.FIREBASE_APP_ID,
 	};
 	const firebaseApp = initializeApp(firebaseConfig);
+	const db = getFirestore(firebaseApp);
+
+	const uploadFile = (e) => {
+		setFile([...e.target.files]);
+		setMovie({ ...movie, image: e.target.files[0].name });
+	};
+
+	const handleCancel = () => {
+		hiddenFileInput.current.value = "";
+		cancelUpload.cancel();
+		setProgress(false);
+		setFile([]);
+	};
+	const onChange = (e) => {
+		setMovie({ ...movie, title: e.target.value });
+	};
+	const handleSubmit = async () => {
+		await addDoc(collection(db, "movies"), movie);
+	};
+
 	useEffect(() => {
 		if (file.length) {
 			const storage = getStorage(firebaseApp);
@@ -58,7 +67,6 @@ const AddMovie = ({ isAddMovie, setIsAddMovie }) => {
 			});
 		}
 	}, [file]);
-	console.log("hola-file", file);
 	return (
 		<Wrapper>
 			<Block>
@@ -78,7 +86,7 @@ const AddMovie = ({ isAddMovie, setIsAddMovie }) => {
 						</Legend>
 					</WrapperBar>
 				) : (
-					<Upload onClick={() => handleClick()}>
+					<Upload onClick={() => hiddenFileInput.current.click()}>
 						Agregá un archivo o arrastralo y soltalo aquí
 					</Upload>
 				)}
@@ -89,8 +97,16 @@ const AddMovie = ({ isAddMovie, setIsAddMovie }) => {
 					ref={hiddenFileInput}
 					onChange={uploadFile}
 				></InputFile>
-				<InputText type="text" placeholder="TÍTULO"></InputText>
-				<Button text="subir película" disabled={!progress}></Button>
+				<InputText
+					type="text"
+					placeholder="TÍTULO"
+					onChange={onChange}
+				></InputText>
+				<Button
+					text="subir película"
+					disabled={!progress || !movie.title}
+					onClick={() => handleSubmit()}
+				></Button>
 				<Close onClick={() => setIsAddMovie(!isAddMovie)}>
 					<InlineSVG src={CloseSvg}></InlineSVG>
 				</Close>
