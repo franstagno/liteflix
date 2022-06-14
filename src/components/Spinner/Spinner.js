@@ -1,6 +1,6 @@
 import React from "react";
 import { Wrapper } from "./styles";
 
-const Spinner = () => <Wrapper></Wrapper>;
+const Spinner = ({ ...rest }) => <Wrapper {...rest}></Wrapper>;
 
 export default Spinner;

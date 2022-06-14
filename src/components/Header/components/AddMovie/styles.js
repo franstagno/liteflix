@@ -13,7 +13,6 @@ const Wrapper = styled.div`
 		}
 	}
 	h3 {
-		text-transform: uppercase;
 		font-size: 18px;
 		line-height: 18px;
 		letter-spacing: 4px;

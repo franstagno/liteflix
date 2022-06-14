@@ -19,7 +19,6 @@ const Wrapper = styled.div`
 		font-size: 74px;
 		line-height: 100px;
 		letter-spacing: 16px;
-		text-transform: uppercase;
 		color: #64eebc;
 		font-family: "Bebas Neue Bold";
 	}
@@ -31,15 +30,8 @@ const Buttons = styled.div`
 `;
 
 const PlayButton = styled(Button)`
-	width: 248px;
-	height: 56px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	background: #242424;
-	font-size: 18px;
-	line-height: 22px;
-	letter-spacing: 4px;
+	margin-right: 25px;
 	i {
 		display: flex;
 		margin-right: 10px;
@@ -50,17 +42,8 @@ const PlayButton = styled(Button)`
 `;
 
 const PlusButton = styled(Button)`
-	width: 248px;
-	height: 56px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	background: rgba(36, 36, 36, 0.5);
 	border: 1px solid rgba(255, 255, 255, 0.5);
-	font-size: 18px;
-	line-height: 22px;
-	letter-spacing: 4px;
-	margin-left: 24px;
 	i {
 		display: flex;
 		margin-right: 10px;

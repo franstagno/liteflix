@@ -1,12 +1,17 @@
 import React from "react";
-import { Wrapper, Text } from "./styles";
 import InlineSVG from "svg-inline-react";
+import { Wrapper, Text, Spinner } from "./styles";
 
-const Button = ({ icon, text, ...rest }) => (
-	<Wrapper {...rest}>
-		{icon && <InlineSVG src={icon}></InlineSVG>}
-		{text && <Text>{text}</Text>}
-	</Wrapper>
-);
+const Button = ({ icon, text, href = "#", loading = false, ...rest }) => {
+	return (
+		<a href={href}>
+			<Wrapper {...rest}>
+				{!loading && icon && <InlineSVG src={icon}></InlineSVG>}
+				{!loading && text && <Text>{text}</Text>}
+				{loading && <Spinner></Spinner>}
+			</Wrapper>
+		</a>
+	);
+};
 
 export default Button;
