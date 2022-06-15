@@ -18,6 +18,9 @@ const Background = styled.div`
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 100% 100%;
+	@media screen and (max-width: 800px) {
+		background-size: 500% 100%;
+	}
 `;
 const Loading = styled.div`
 	width: 100%;
@@ -31,6 +34,12 @@ const Loading = styled.div`
 const Movies = styled.div`
 	display: flex;
 	flex-wrap: wrap;
+	@media screen and (max-width: 800px) {
+		margin-top: 200px;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 `;
 
 export { Wrapper, Background, Loading, Movies };

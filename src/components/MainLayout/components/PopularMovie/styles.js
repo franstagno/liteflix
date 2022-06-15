@@ -22,12 +22,22 @@ const Wrapper = styled.div`
 		color: #64eebc;
 		font-family: "Bebas Neue Bold";
 	}
-	@media screen and (min-width: 800px) and (max-height: 750px) {
+	@media screen and (max-width: 800px) {
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		h1 {
+			line-height: 61px;
+			font-size: 45px;
+			text-align: center;
+		}
+	}
+	/* @media screen and (min-width: 800px) and (max-height: 750px) {
 		h1 {
 			line-height: 61px;
 			font-size: 55px;
 		}
-	}
+	} */
 `;
 
 const Buttons = styled.div`
@@ -36,17 +46,24 @@ const Buttons = styled.div`
 	@media screen and (min-width: 800px) and (max-height: 750px) {
 		margin-bottom: 20px;
 	}
+	@media screen and (max-width: 800px) {
+		flex-direction: column;
+	}
 `;
 
 const PlayButton = styled(Button)`
 	background: #242424;
 	margin-right: 25px;
+
 	i {
 		display: flex;
 		margin-right: 10px;
 		svg {
 			width: 11px;
 		}
+	}
+	@media screen and (max-width: 800px) {
+		margin: 10px 0 15px 0;
 	}
 `;
 
