@@ -1,38 +1,24 @@
-import React, { useState } from "react";
-import { Wrapper, Logo, Brand } from "./styles";
+import React, { useState, useContext } from "react";
+import StateContext from "../../context/StateContext";
 import LinkAddMovie from "./components/AddMovie";
 import Options from "./components/Options";
 import Menu from "./components/Menu";
 import AddMovie from "../AddMovie";
+import { Wrapper, Logo, Brand } from "./styles";
 
 const Header = () => {
-	const [isOpenMenu, setIsOpenMenu] = useState(false);
-	const [isAddMovie, setIsAddMovie] = useState(false);
-	return !isAddMovie ? (
+	const { movies } = useContext(StateContext);
+	return !movies.addMovie ? (
 		<Wrapper>
 			<Brand>
 				<Logo src="/liteflix.png"></Logo>
-				<LinkAddMovie
-					isAddMovie={isAddMovie}
-					setIsAddMovie={setIsAddMovie}
-				></LinkAddMovie>
+				<LinkAddMovie></LinkAddMovie>
 			</Brand>
-			<Options
-				isOpenMenu={isOpenMenu}
-				setIsOpenMenu={setIsOpenMenu}
-			></Options>
-			{isOpenMenu && (
-				<Menu
-					isOpenMenu={isOpenMenu}
-					setIsOpenMenu={setIsOpenMenu}
-				></Menu>
-			)}
+			<Options></Options>
+			{movies.menu && <Menu></Menu>}
 		</Wrapper>
 	) : (
-		<AddMovie
-			isAddMovie={isAddMovie}
-			setIsAddMovie={setIsAddMovie}
-		></AddMovie>
+		<AddMovie></AddMovie>
 	);
 };
 

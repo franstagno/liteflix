@@ -7,6 +7,8 @@ export const StateContextProvider = ({ children }) => {
 		myMovies: [],
 		popularMovies: [],
 		featuredMovie: {},
+		addMovie: false,
+		menu: false,
 	};
 	const [movies, setMovies] = useState(initialState);
 	return (

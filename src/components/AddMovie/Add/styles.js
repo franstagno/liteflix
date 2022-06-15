@@ -72,6 +72,7 @@ const Text = styled.p``;
 const Legend = styled.p`
 	align-self: flex-end;
 	cursor: pointer;
+	color: ${(props) => (props.progress === 100 ? "#64EEBC" : "#FFFFFF")};
 `;
 
 const WrapperBar = styled.div`

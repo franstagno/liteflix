@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
+import StateContext from "../../../context/StateContext";
 import InlineSVG from "svg-inline-react";
 import CloseSvg from "../../../svg/close.svg";
 import ProgressBar from "@ramonak/react-progress-bar";
@@ -19,18 +20,14 @@ import {
 	Legend,
 } from "./styles";
 
-const Add = ({
-	isAddMovie,
-	setIsAddMovie,
-	setSuccess,
-	isLoading,
-	setIsLoanding,
-}) => {
+const Add = ({ setSuccess }) => {
 	const hiddenFileInput = useRef(null);
 	const [file, setFile] = useState([]);
 	const [movie, setMovie] = useState({});
+	const [isLoading, setIsLoanding] = useState(false);
 	const [cancelUpload, setCancelUpload] = useState({});
 	const [progress, setProgress] = useState(false);
+	const { movies, setMovies } = useContext(StateContext);
 
 	const firebaseApp = initializeApp(firebaseConfig);
 	const db = getFirestore(firebaseApp);
@@ -68,12 +65,17 @@ const Add = ({
 			});
 		}
 	}, [file]);
+
 	return (
 		<Wrapper>
 			<Title>agregar película</Title>
 			{progress || progress === 0 ? (
 				<WrapperBar>
-					<Text>{`cargando ${progress}%`}</Text>
+					<Text>
+						{progress === 100
+							? `${progress}% cargado`
+							: `cargando ${progress}%`}
+					</Text>
 					<ProgressBar
 						completed={progress}
 						className="custom-progres-bar"
@@ -81,7 +83,10 @@ const Add = ({
 						isLabelVisible={false}
 						bgColor="#64eebc"
 					></ProgressBar>
-					<Legend onClick={() => handleCancel()}>
+					<Legend
+						progress={progress}
+						onClick={progress !== 100 && (() => handleCancel())}
+					>
 						{progress === 100 ? `¡ listo !` : "cancelar"}
 					</Legend>
 				</WrapperBar>
@@ -108,7 +113,7 @@ const Add = ({
 				onClick={() => handleSubmit()}
 				loading={isLoading}
 			></Button>
-			<Close onClick={() => setIsAddMovie(!isAddMovie)}>
+			<Close onClick={() => setMovies({ ...movies, addMovie: false })}>
 				<InlineSVG src={CloseSvg}></InlineSVG>
 			</Close>
 		</Wrapper>

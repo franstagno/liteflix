@@ -1,21 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Add from "./Add";
 import Success from "./Success";
 import { Wrapper } from "./styles";
 
-const AddMovie = ({ isAddMovie, setIsAddMovie }) => {
+const AddMovie = () => {
 	const [success, setSuccess] = useState(false);
-	const [isLoading, setIsLoanding] = useState(false);
 	return (
 		<Wrapper>
 			{!success ? (
-				<Add
-					isAddMovie={isAddMovie}
-					setIsAddMovie={setIsAddMovie}
-					setSuccess={setSuccess}
-					setIsLoanding={setIsLoanding}
-					isLoading={isLoading}
-				></Add>
+				<Add setSuccess={setSuccess}></Add>
 			) : (
 				<Success></Success>
 			)}
