@@ -24,7 +24,7 @@ const Block = styled.div`
 	svg {
 		width: 30px;
 	}
-	@media screen and (min-width: 800px) and (max-height: 800px) {
+	@media screen and (max-width: 800px) {
 		margin-bottom: 20px;
 	}
 `;
@@ -45,7 +45,7 @@ const Link = styled.div`
 	line-height: 22px;
 	letter-spacing: 4px;
 	&.add-movie {
-		margin-bottom: 70px;
+		margin-bottom: 60px;
 		margin-top: 30px;
 	}
 	a {

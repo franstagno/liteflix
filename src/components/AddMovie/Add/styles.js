@@ -19,6 +19,11 @@ const Wrapper = styled.div`
 			}
 		}
 	}
+	@media screen and (max-width: 800px) {
+		.custom-progres-bar {
+			width: 270px;
+		}
+	}
 `;
 
 const Title = styled.h3`
@@ -61,6 +66,10 @@ const Upload = styled.div`
 	width: 600px;
 	display: flex;
 	justify-content: center;
+	@media screen and (max-width: 800px) {
+		width: 270px;
+		padding: 20px;
+	}
 `;
 const Button = styled(ButtonComponent)`
 	background: #ffffff;

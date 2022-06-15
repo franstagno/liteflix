@@ -4,6 +4,9 @@ const Wrapper = styled.header`
 	display: flex;
 	justify-content: space-between;
 	padding-top: 30px;
+	@media screen and (max-width: 800px) {
+		display: none;
+	}
 `;
 const Logo = styled.img`
 	height: 23px;
