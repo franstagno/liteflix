@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import StateContext from "../../context/StateContext";
 import LinkAddMovie from "./components/AddMovie";
 import Options from "./components/Options";
@@ -8,17 +8,18 @@ import { Wrapper, Logo, Brand } from "./styles";
 
 const Header = () => {
 	const { movies } = useContext(StateContext);
-	return !movies.addMovie ? (
-		<Wrapper>
-			<Brand>
-				<Logo src="/liteflix.png"></Logo>
-				<LinkAddMovie></LinkAddMovie>
-			</Brand>
-			<Options></Options>
+	return (
+		<>
+			<Wrapper>
+				<Brand>
+					<Logo src="/liteflix.png"></Logo>
+					<LinkAddMovie></LinkAddMovie>
+				</Brand>
+				<Options></Options>
+			</Wrapper>
 			{movies.menu && <Menu></Menu>}
-		</Wrapper>
-	) : (
-		<AddMovie></AddMovie>
+			{movies.addMovie && <AddMovie></AddMovie>}
+		</>
 	);
 };
 

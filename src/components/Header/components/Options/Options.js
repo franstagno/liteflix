@@ -5,7 +5,7 @@ import InlineSVG from "svg-inline-react";
 import MenuIcon from "../../../../svg/menu_icon.svg";
 import { Wrapper } from "./styles";
 
-const Options = ({ isOpenMenu, setIsOpenMenu }) => {
+const Options = () => {
 	const { movies, setMovies } = useContext(StateContext);
 	return (
 		<Wrapper>

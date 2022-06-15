@@ -7,6 +7,13 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	@media screen and (max-width: 800px) {
+		height: auto;
+		${(props) =>
+			(props.isMenuOpen || props.isAddMovieOpen) && "overflow: hidden;"}
+		${(props) =>
+			(props.isMenuOpen || props.isAddMovieOpen) && "height: 100%;"}
+	}
 `;
 const Background = styled.div`
 	width: 100%;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
 	display: flex;
 	justify-content: space-between;
 	padding-top: 30px;

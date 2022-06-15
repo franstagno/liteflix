@@ -30,7 +30,7 @@ const MainLayout = () => {
 		</Loading>
 	) : (
 		<Background src={url}>
-			<Wrapper>
+			<Wrapper isMenuOpen={movies.menu} isAddMovieOpen={movies.addMovie}>
 				<Header></Header>
 				<Movies>
 					<PopularMovie></PopularMovie>
