@@ -22,11 +22,20 @@ const Wrapper = styled.div`
 		color: #64eebc;
 		font-family: "Bebas Neue Bold";
 	}
+	@media screen and (min-width: 800px) and (max-height: 750px) {
+		h1 {
+			line-height: 61px;
+			font-size: 55px;
+		}
+	}
 `;
 
 const Buttons = styled.div`
 	display: flex;
 	margin-bottom: 162px;
+	@media screen and (min-width: 800px) and (max-height: 750px) {
+		margin-bottom: 20px;
+	}
 `;
 
 const PlayButton = styled(Button)`

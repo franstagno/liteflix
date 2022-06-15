@@ -9,6 +9,10 @@ const Wrapper = styled.div`
 	background-size: 100% 100%;
 	border-radius: 4px;
 	margin-bottom: 20px;
+	@media screen and (min-width: 800px) and (max-height: 750px) {
+		width: 190px;
+		height: 115px;
+	}
 `;
 
 const NotHover = styled.div`

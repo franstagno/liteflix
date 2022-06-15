@@ -11,6 +11,13 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	align-items: center;
 	height: 700px;
+	@media screen and (min-width: 800px) and (max-height: 750px) {
+		height: auto;
+		margin-bottom: 0;
+		div:nth-of-type(4) {
+			display: none;
+		}
+	}
 `;
 
 export { Wrapper };
