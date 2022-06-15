@@ -30,14 +30,10 @@ export const getPopularMovie = async () => {
 			"https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20"
 		);
 		const movies = await response.json();
-		return (
-			movies &&
-			movies.results &&
-			movies.results.reduce(
-				(acum, movie) =>
-					(acum = acum.popularity > movie.popularity ? acum : movie),
-				{}
-			)
+		return movies.results.reduce(
+			(acum, movie) =>
+				(acum = acum.popularity > movie.popularity ? acum : movie),
+			{}
 		);
 	} catch (error) {
 		console.warn("function getPopularMovie", error);
@@ -51,7 +47,7 @@ export const getPopularsMovies = async () => {
 			"https://api.themoviedb.org/3/movie/popular?api_key=6f26fd536dd6192ec8a57e94141f8b20"
 		);
 		const movies = await response.json();
-		return movies && movies.results && movies.results.splice(0, 4);
+		return movies.results.splice(0, 4);
 	} catch (error) {
 		console.warn("function getPopularsMovies", error);
 		return [];

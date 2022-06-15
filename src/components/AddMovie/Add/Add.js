@@ -24,6 +24,7 @@ const Add = ({ setSuccess }) => {
 	const hiddenFileInput = useRef(null);
 	const [file, setFile] = useState([]);
 	const [movie, setMovie] = useState({});
+	const [error, setError] = useState(false);
 	const [isLoading, setIsLoanding] = useState(false);
 	const [cancelUpload, setCancelUpload] = useState({});
 	const [progress, setProgress] = useState(false);
@@ -38,8 +39,10 @@ const Add = ({ setSuccess }) => {
 	};
 
 	const handleCancel = () => {
+		if (progress === 100 && !error) return;
 		hiddenFileInput.current.value = "";
 		cancelUpload.cancel();
+		setError(false);
 		setProgress(false);
 		setFile([]);
 	};
@@ -58,11 +61,18 @@ const Add = ({ setSuccess }) => {
 			const imageRef = ref(storage, file[0].name);
 			const imageUpload = uploadBytesResumable(imageRef, file[0]);
 			setCancelUpload(imageUpload);
-			imageUpload.on("state_changed", (snapshot) => {
-				const progress =
-					(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-				setProgress(Math.round(progress));
-			});
+			imageUpload.on(
+				"state_changed",
+				(snapshot) => {
+					const progress =
+						(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					setProgress(Math.round(progress));
+				},
+				() => {
+					setProgress(100);
+					setError(true);
+				}
+			);
 		}
 	}, [file]);
 
@@ -72,22 +82,27 @@ const Add = ({ setSuccess }) => {
 			{progress || progress === 0 ? (
 				<WrapperBar>
 					<Text>
-						{progress === 100
-							? `${progress}% cargado`
-							: `cargando ${progress}%`}
+						{progress === 100 && !error && `${progress}% cargado`}
+						{progress !== 100 && !error && `cargando ${progress}%`}
+						{progress === 100 &&
+							error &&
+							"¡error no se pudo cargar la pelicula"}
 					</Text>
 					<ProgressBar
 						completed={progress}
 						className="custom-progres-bar"
 						borderRadius="0"
 						isLabelVisible={false}
-						bgColor="#64eebc"
+						bgColor={!error ? "#64eebc" : "#FF0000"}
 					></ProgressBar>
 					<Legend
 						progress={progress}
-						onClick={progress !== 100 && (() => handleCancel())}
+						error={error}
+						onClick={() => handleCancel()}
 					>
-						{progress === 100 ? `¡ listo !` : "cancelar"}
+						{progress === 100 && !error && `¡ listo !`}
+						{progress !== 100 && !error && `cancelar`}
+						{progress === 100 && error && "reintentar"}
 					</Legend>
 				</WrapperBar>
 			) : (
@@ -109,7 +124,7 @@ const Add = ({ setSuccess }) => {
 			></InputText>
 			<Button
 				text="subir película"
-				disabled={!progress || !movie.title}
+				disabled={!progress || !movie.title || error}
 				onClick={() => handleSubmit()}
 				loading={isLoading}
 			></Button>

@@ -11,7 +11,10 @@ const Wrapper = styled.div`
 const Background = styled.div`
 	width: 100%;
 	height: 100vh;
-	background-image: url(${(props) => props.src});
+	${(props) =>
+		props.src
+			? `background-image: url(${props.src})`
+			: `background: rgba(36,36,36,0.9);`};
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 100% 100%;

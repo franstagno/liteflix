@@ -71,8 +71,10 @@ const Button = styled(ButtonComponent)`
 const Text = styled.p``;
 const Legend = styled.p`
 	align-self: flex-end;
-	cursor: pointer;
-	color: ${(props) => (props.progress === 100 ? "#64EEBC" : "#FFFFFF")};
+	cursor: ${(props) =>
+		props.progress === 100 && !props.error ? "initial" : "pointer"};
+	color: ${(props) =>
+		props.progress === 100 && !props.error ? "#64EEBC" : "#FFFFFF"};
 `;
 
 const WrapperBar = styled.div`

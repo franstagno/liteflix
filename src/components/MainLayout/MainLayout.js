@@ -10,7 +10,9 @@ import { getPopularMovie, getPopularsMovies, getMyMovies } from "./utils";
 const MainLayout = () => {
 	const { movies, setMovies } = useContext(StoreContext);
 	const [loading, setLoading] = useState(true);
-	const url = `https://image.tmdb.org/t/p/original/${movies.featuredMovie.backdrop_path}`;
+	const url =
+		movies.featuredMovie.backdrop_path &&
+		`https://image.tmdb.org/t/p/original/${movies.featuredMovie.backdrop_path}`;
 
 	useEffect(() => {
 		(async () => {
