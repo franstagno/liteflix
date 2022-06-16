@@ -16,7 +16,11 @@ export const getMyMovies = async () => {
 	try {
 		const movies = collection(db, "movies");
 		const moviesSnapshot = await getDocs(movies);
-		const myMovies = moviesSnapshot.docs.map((doc) => doc.data());
+		const myMovies = moviesSnapshot.docs.map((doc) => {
+			const data = doc.data();
+			const id = doc.id;
+			return { id, ...data };
+		});
 		return myMovies.length > 4 ? myMovies.splice(0, 4) : myMovies;
 	} catch (error) {
 		console.warn("function getMyMovies", error);

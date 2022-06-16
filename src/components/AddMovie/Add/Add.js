@@ -35,7 +35,10 @@ const Add = ({ setSuccess }) => {
 
 	const uploadFile = (e) => {
 		setFile([...e.target.files]);
-		setMovie({ ...movie, backdrop_path: e.target.files[0].name });
+		setMovie({
+			...movie,
+			backdrop_path: e.target.files[0].name.replace(/\s/g, "-"),
+		});
 	};
 
 	const handleCancel = () => {
@@ -58,7 +61,7 @@ const Add = ({ setSuccess }) => {
 	useEffect(() => {
 		if (file.length) {
 			const storage = getStorage(firebaseApp);
-			const imageRef = ref(storage, file[0].name);
+			const imageRef = ref(storage, file[0].name.replace(/\s/g, "-"));
 			const imageUpload = uploadBytesResumable(imageRef, file[0]);
 			setCancelUpload(imageUpload);
 			imageUpload.on(

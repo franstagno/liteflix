@@ -17,6 +17,7 @@ const PopularsMovies = () => {
 		category !== "myMovies"
 			? "https://image.tmdb.org/t/p/w500/"
 			: "https://firebasestorage.googleapis.com/v0/b/liteflix-73186.appspot.com/o/";
+
 	return (
 		<Wrapper>
 			<Dropdown
@@ -28,6 +29,7 @@ const PopularsMovies = () => {
 					key={index}
 					src={`${url}${movie.backdrop_path}?alt=media`}
 					movie={movie}
+					category={category}
 				></Movie>
 			))}
 		</Wrapper>

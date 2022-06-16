@@ -41,7 +41,6 @@ const Title = styled.p`
 	text-align: center;
 	letter-spacing: 4px;
 	margin-bottom: 10px;
-	font-family: Bebas Neue Light;
 	display: ${(props) => (!props.isOver ? "block" : "none")};
 `;
 
@@ -109,6 +108,19 @@ const Year = styled.div`
 const ScoreWrapper = styled.div`
 	display: flex;
 `;
+const Delete = styled.div`
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	svg {
+		width: 25px;
+		path {
+			fill: white;
+		}
+	}
+`;
 
 export {
 	Wrapper,
@@ -120,4 +132,5 @@ export {
 	Score,
 	Year,
 	ScoreWrapper,
+	Delete,
 };
