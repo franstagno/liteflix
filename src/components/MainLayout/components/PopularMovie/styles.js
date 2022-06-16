@@ -48,6 +48,7 @@ const Buttons = styled.div`
 	}
 	@media screen and (max-width: 800px) {
 		flex-direction: column;
+		margin-bottom: 80px;
 	}
 `;
 

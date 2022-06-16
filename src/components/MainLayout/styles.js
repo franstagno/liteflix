@@ -15,12 +15,13 @@ const Wrapper = styled.div`
 			(props.isMenuOpen || props.isAddMovieOpen) && "height: 100%;"}
 	}
 `;
+
 const Background = styled.div`
 	width: 100%;
 	height: 100vh;
 	${(props) =>
 		props.src
-			? `background-image: url(${props.src})`
+			? `background: linear-gradient(0deg, rgba(36,36,36,1) 1%, rgba(0,0,0,0) 50%), url(${props.src})`
 			: `background: rgba(36,36,36,0.9);`};
 	background-repeat: no-repeat;
 	background-position: center;
