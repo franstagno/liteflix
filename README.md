@@ -1,1 +1,1 @@
-App for movies
+App for movies LITEFLIX
