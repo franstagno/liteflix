@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import StoreContext from "../../../../context/StateContext";
 import Dropdown from "../Dropdown";
 import Movie from "../Movie";
+import Bounce from "react-reveal/Bounce";
 import { Wrapper } from "./styles";
 
 const PopularsMovies = () => {
@@ -19,20 +20,22 @@ const PopularsMovies = () => {
 			: "https://firebasestorage.googleapis.com/v0/b/liteflix-73186.appspot.com/o/";
 
 	return (
-		<Wrapper>
-			<Dropdown
-				categories={categories}
-				setCategory={setCategory}
-			></Dropdown>
-			{movies[category].map((movie, index) => (
-				<Movie
-					key={index}
-					src={`${url}${movie.backdrop_path}?alt=media`}
-					movie={movie}
-					category={category}
-				></Movie>
-			))}
-		</Wrapper>
+		<Bounce top cascade>
+			<Wrapper>
+				<Dropdown
+					categories={categories}
+					setCategory={setCategory}
+				></Dropdown>
+				{movies[category].map((movie, index) => (
+					<Movie
+						key={index}
+						src={`${url}${movie.backdrop_path}?alt=media`}
+						movie={movie}
+						category={category}
+					></Movie>
+				))}
+			</Wrapper>
+		</Bounce>
 	);
 };
 

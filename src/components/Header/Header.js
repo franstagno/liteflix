@@ -4,7 +4,6 @@ import Menu from "./components/Menu";
 import AddMovie from "../AddMovie";
 import Desktop from "./components/Desktop";
 import Mobile from "./components/Mobile";
-import {} from "./styles";
 
 const Header = () => {
 	const { movies } = useContext(StateContext);
