@@ -5,6 +5,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	svg {
 		width: 27px;
+		cursor: pointer;
 	}
 `;
 

@@ -27,5 +27,6 @@ const User = styled.img`
 	border-radius: 50%;
 	width: 34px;
 	margin-left: 25px;
+	cursor: pointer;
 `;
 export { Wrapper, Notification, User };
