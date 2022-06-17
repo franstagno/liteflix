@@ -57,3 +57,7 @@ export const getPopularsMovies = async () => {
 		return [];
 	}
 };
+
+export const getIsMobile = () => {
+	return window.innerWidth <= 800 && window.innerHeight <= 900;
+};

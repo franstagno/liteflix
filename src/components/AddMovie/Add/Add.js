@@ -7,14 +7,15 @@ import { firebaseConfig } from "../../../components/MainLayout/utils";
 import { getFirestore, collection, addDoc } from "firebase/firestore/lite";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import { FileUploader } from "react-drag-drop-files";
+import { getIsMobile } from "../../MainLayout/utils";
+
 import {
 	Wrapper,
 	Title,
 	InputText,
-	InputFile,
 	Close,
 	ButtonSubmit,
-	Upload,
 	WrapperBar,
 	Text,
 	Legend,
@@ -22,48 +23,51 @@ import {
 } from "./styles";
 
 const Add = ({ setSuccess }) => {
-	const hiddenFileInput = useRef(null);
-	const [file, setFile] = useState([]);
-	const [movie, setMovie] = useState({});
+	const [movie, setMovie] = useState({ file: false });
 	const [error, setError] = useState(false);
 	const [isLoading, setIsLoanding] = useState(false);
 	const [cancelUpload, setCancelUpload] = useState({});
 	const [progress, setProgress] = useState(false);
 	const { movies, setMovies } = useContext(StateContext);
-
 	const firebaseApp = initializeApp(firebaseConfig);
 	const db = getFirestore(firebaseApp);
+	const isMobile = getIsMobile();
 
-	const uploadFile = (e) => {
-		setFile([...e.target.files]);
+	const uploadFile = (file) => {
 		setMovie({
 			...movie,
-			backdrop_path: e.target.files[0].name.replace(/\s/g, "-"),
+			backdrop_path: file.name.replace(/\s/g, "-"),
+			file,
 		});
 	};
 
 	const handleCancel = () => {
 		if (progress === 100 && !error) return;
-		hiddenFileInput.current.value = "";
+		movie.file = "";
 		cancelUpload.cancel();
 		setError(false);
 		setProgress(false);
-		setFile([]);
+		setMovie({ ...movie, file: false });
 	};
-	const onChange = (e) => {
+
+	const handleChange = (e) => {
 		setMovie({ ...movie, title: e.target.value });
 	};
+
 	const handleSubmit = async () => {
 		setIsLoanding(true);
-		await addDoc(collection(db, "movies"), movie);
+		await addDoc(collection(db, "movies"), {
+			title: movie.title,
+			backdrop_path: movie.backdrop_path,
+		});
 		setSuccess(true);
 	};
 
 	useEffect(() => {
-		if (file.length) {
+		if (movie.file) {
 			const storage = getStorage(firebaseApp);
-			const imageRef = ref(storage, file[0].name.replace(/\s/g, "-"));
-			const imageUpload = uploadBytesResumable(imageRef, file[0]);
+			const imageRef = ref(storage, movie.file.name.replace(/\s/g, "-"));
+			const imageUpload = uploadBytesResumable(imageRef, movie.file);
 			setCancelUpload(imageUpload);
 			imageUpload.on(
 				"state_changed",
@@ -78,7 +82,7 @@ const Add = ({ setSuccess }) => {
 				}
 			);
 		}
-	}, [file]);
+	}, [movie.file]);
 
 	return (
 		<Wrapper>
@@ -110,21 +114,22 @@ const Add = ({ setSuccess }) => {
 					</Legend>
 				</WrapperBar>
 			) : (
-				<Upload onClick={() => hiddenFileInput.current.click()}>
-					Agregá un archivo o arrastralo y soltalo aquí
-				</Upload>
+				<FileUploader
+					handleChange={uploadFile}
+					name="file"
+					label={
+						isMobile
+							? "Agregá un archivo"
+							: "Agregá un archivo o arrastralo y soltalo aquí"
+					}
+					classes="input-file"
+					fileOrFiles={movie.file}
+				/>
 			)}
-			<InputFile
-				type="file"
-				multiple
-				accept="image/*"
-				ref={hiddenFileInput}
-				onChange={uploadFile}
-			></InputFile>
 			<InputText
 				type="text"
 				placeholder="TÍTULO"
-				onChange={onChange}
+				onChange={handleChange}
 			></InputText>
 			<ButtonSubmit
 				text="subir película"

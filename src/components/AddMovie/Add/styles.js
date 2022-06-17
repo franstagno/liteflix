@@ -19,6 +19,42 @@ const Wrapper = styled.div`
 			}
 		}
 	}
+	.input-file {
+		border: 1px dashed #ffffff;
+		margin: 40px 0;
+		padding: 30px 0;
+		cursor: pointer;
+		width: 600px;
+		display: flex;
+		justify-content: center;
+		min-width: auto;
+		max-width: auto;
+		border-radius: 0;
+		height: auto;
+		.file-types {
+			display: none;
+		}
+		div {
+			flex-grow: 0;
+			span {
+				font-size: 16px;
+				line-height: 16px;
+				letter-spacing: 4px;
+				text-align: center;
+				color: #ffffff;
+				span {
+					text-decoration: none;
+				}
+			}
+		}
+		svg {
+			display: none;
+		}
+		@media screen and (max-width: 800px) {
+			width: 270px;
+			padding: 20px 0;
+		}
+	}
 	@media screen and (max-width: 800px) {
 		.custom-progres-bar {
 			width: 270px;
@@ -47,9 +83,6 @@ const InputText = styled.input`
 		outline: none;
 	}
 `;
-const InputFile = styled.input`
-	display: none;
-`;
 const Close = styled.div`
 	position: absolute;
 	top: 0;
@@ -59,19 +92,6 @@ const Close = styled.div`
 	}
 	@media screen and (max-width: 800px) {
 		display: none;
-	}
-`;
-const Upload = styled.div`
-	border: 1px dashed #ffffff;
-	margin: 40px 0;
-	padding: 40px;
-	cursor: pointer;
-	width: 600px;
-	display: flex;
-	justify-content: center;
-	@media screen and (max-width: 800px) {
-		width: 270px;
-		padding: 20px;
 	}
 `;
 const ButtonSubmit = styled(ButtonComponent)`
@@ -105,10 +125,8 @@ export {
 	Wrapper,
 	Title,
 	InputText,
-	InputFile,
 	Close,
 	ButtonSubmit,
-	Upload,
 	Text,
 	Legend,
 	WrapperBar,
