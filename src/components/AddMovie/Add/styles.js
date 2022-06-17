@@ -57,6 +57,9 @@ const Close = styled.div`
 	svg {
 		width: 25px;
 	}
+	@media screen and (max-width: 800px) {
+		display: none;
+	}
 `;
 const Upload = styled.div`
 	border: 1px dashed #ffffff;
@@ -71,10 +74,17 @@ const Upload = styled.div`
 		padding: 20px;
 	}
 `;
-const Button = styled(ButtonComponent)`
+const ButtonSubmit = styled(ButtonComponent)`
 	background: #ffffff;
 	color: #242424;
 	margin-top: 40px;
+`;
+const ButtonExit = styled(ButtonComponent)`
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	margin-top: 20px;
+	@media screen and (min-width: 800px) {
+		display: none;
+	}
 `;
 
 const Text = styled.p``;
@@ -97,9 +107,10 @@ export {
 	InputText,
 	InputFile,
 	Close,
-	Button,
+	ButtonSubmit,
 	Upload,
 	Text,
 	Legend,
 	WrapperBar,
+	ButtonExit,
 };

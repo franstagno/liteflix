@@ -13,11 +13,12 @@ import {
 	InputText,
 	InputFile,
 	Close,
-	Button,
+	ButtonSubmit,
 	Upload,
 	WrapperBar,
 	Text,
 	Legend,
+	ButtonExit,
 } from "./styles";
 
 const Add = ({ setSuccess }) => {
@@ -125,12 +126,16 @@ const Add = ({ setSuccess }) => {
 				placeholder="TÍTULO"
 				onChange={onChange}
 			></InputText>
-			<Button
+			<ButtonSubmit
 				text="subir película"
 				disabled={!progress || !movie.title || error}
 				onClick={() => handleSubmit()}
 				loading={isLoading}
-			></Button>
+			></ButtonSubmit>
+			<ButtonExit
+				text="salir"
+				onClick={() => setMovies({ ...movies, addMovie: false })}
+			></ButtonExit>
 			<Close onClick={() => setMovies({ ...movies, addMovie: false })}>
 				<InlineSVG src={CloseSvg}></InlineSVG>
 			</Close>
