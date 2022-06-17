@@ -28,8 +28,10 @@ const Wrapper = styled.div`
 		align-items: center;
 		h1 {
 			line-height: 61px;
-			font-size: 45px;
+			font-size: 35px;
 			text-align: center;
+			max-width: 100%;
+			letter-spacing: 14px;
 		}
 	}
 	/* @media screen and (min-width: 800px) and (max-height: 750px) {

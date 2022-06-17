@@ -6,7 +6,7 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	align-items: center;
 	position: relative;
-	padding: 40px 0;
+	padding: 40px 20px;
 `;
 
 const Logo = styled.img``;
