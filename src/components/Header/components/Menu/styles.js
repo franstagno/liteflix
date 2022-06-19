@@ -29,7 +29,7 @@ const Block = styled.div`
 	}
 `;
 
-const Links = styled.div`
+const Links = styled.nav`
 	display: flex;
 	flex-direction: column;
 	width: 90%;

@@ -3,7 +3,7 @@ import StoreContext from "../../context/StateContext";
 import Header from "../Header";
 import Spinner from "../Spinner";
 import PopularMovie from "./components/PopularMovie";
-import PopularsMovies from "./components/PopularsMovies";
+import PopularsMovies from "./components/ListMovies";
 import { Wrapper, Background, Loading, Movies } from "./styles";
 import { getPopularMovie, getPopularsMovies, getMyMovies } from "./utils";
 

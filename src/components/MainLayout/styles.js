@@ -39,7 +39,7 @@ const Loading = styled.div`
 	background: #242424;
 `;
 
-const Movies = styled.div`
+const Movies = styled.section`
 	display: flex;
 	flex-wrap: wrap;
 	@media screen and (max-width: 800px) {

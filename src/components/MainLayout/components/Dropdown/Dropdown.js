@@ -39,7 +39,10 @@ const Dropdown = ({ categories, setCategory }) => {
 						<Option
 							key={index}
 							selected={category.selected}
-							onClick={() => handleChange(index)}
+							onClick={() => {
+								handleChange(index);
+								setOpen(false);
+							}}
 						>
 							{category.displayName}
 						</Option>

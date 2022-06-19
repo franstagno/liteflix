@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Button from "../../../Button";
 
-const Wrapper = styled.div`
+const Wrapper = styled.article`
 	width: calc(100% - 220px);
 	display: flex;
 	flex-direction: column;

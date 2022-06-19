@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled.aside`
 	width: 220px;
 	margin-bottom: 80px;
 	font-weight: 400;
